@@ -39,6 +39,79 @@ Pseudocode:
                         return DRAW
                     ELSE
                         return computer WON
-             
-
 */
+
+
+let player1Score = 0;
+let player2Score = 0;
+
+let game = true;
+let playerInput = '';
+
+while (true) {
+    let playerInput = getPlayerInput();
+    let computerInput = getRandomChoice();
+
+    if (playerInput == 'exit'){
+        console.log('Thanks for playing the game! See ya!');
+        break;
+    }
+
+    updateResult(getRoundResult(playerInput, computerInput));
+    console.log(getGameStatus());
+}
+
+//console.log(getRandomChoice());
+
+function getRandomChoice() { // Generate random option choice. Return result as a string.
+    let choices = ['rock', 'paper', 'scissors']; //0 1 2
+    return choices[Math.floor(Math.random() * 3)]; // Math.random doesn't include the last number...
+}
+
+function getPlayerInput() {
+    let pickedRightOne = false; // For readability's sake...
+
+    while (!pickedRightOne) {
+        let ans = prompt('Type \'rock\', \'paper\' or \'scissors\'. Type \'exit\' to quit the game.');
+        ans = ans.toLowerCase();
+    
+        if (ans == 'rock' || ans == 'paper' || ans == 'scissors' || ans == 'exit') {
+            pickedRightOne = true;
+            return ans;
+        } else {
+            console.log('Please enter the valid answer.');
+        }
+    }
+}
+
+function getRoundResult(p1Choice, p2Choice) { // Game Win Condition. Compare choices. Return result as a string.
+    if (p1Choice == 'rock' && p2Choice == 'scissors') {
+        return 'p1Won';
+    } else if (p1Choice == 'paper' && p2Choice == 'rock') {
+        return 'p1Won';
+    } else if (p1Choice == 'scissors' && p2Choice == 'paper') {
+        return 'p1Won';
+    } else if (p1Choice == p2Choice) {
+        return 'draw';
+    } else {
+        return 'p2Won'
+    }
+}
+
+function updateResult(gameResult){
+    if(gameResult == 'p1Won'){
+        player1Score++;
+        console.log(`Player1 won this round!`);
+    } else if(gameResult == 'p2Won'){
+        console.log(`Player2 won this round!`);
+        player2Score++;
+    } else if(gameResult == 'draw') {
+        console.log(`This round ended with draw.`);
+    }
+}
+
+function getGameStatus() {
+    return `Current stats: 
+        Player1 Score: ${player1Score} 
+        Player2 Score: ${player2Score}`
+}
