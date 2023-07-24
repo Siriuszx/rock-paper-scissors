@@ -41,19 +41,19 @@ Pseudocode:
                         return computer WON
 */
 
-
 let player1Score = 0;
 let player2Score = 0;
 
-let game = true;
+let game = true; // It's gonna be useful later, I'm certain of it ^^
 let playerInput = '';
 
-while (true) {
+while (game) {
     let playerInput = getPlayerInput();
     let computerInput = getRandomChoice();
 
-    if (playerInput == 'exit' || playerInput == null){
+    if (playerInput == 'exit' || playerInput == null) {
         console.log('Thanks for playing the game! See ya!');
+        game = false;
         break;
     }
 
@@ -61,11 +61,9 @@ while (true) {
     console.log(getGameStatus());
 }
 
-//console.log(getRandomChoice());
-
 function getRandomChoice() { // Generate random option choice. Return result as a string.
     let choices = ['rock', 'paper', 'scissors']; //0 1 2
-    return choices[Math.floor(Math.random() * 3)]; // Math.random doesn't include the last number...
+    return choices[Math.floor(Math.random() * 3)]; // Math.random() * 3 doesn't include the last number...
 }
 
 function getPlayerInput() {
@@ -73,11 +71,11 @@ function getPlayerInput() {
 
     while (!pickedRightOne) {
         let ans = prompt(`This game is played in console!
-        
+
 Type 'rock', 'paper' or 'scissors' 
 Type 'exit' to quit the game`) || 'exit'; // Eliminates error when prompt window gets closed
         ans = ans.toLowerCase();
-    
+
         if (ans == 'rock' || ans == 'paper' || ans == 'scissors' || ans == 'exit') {
             pickedRightOne = true;
             return ans;
@@ -101,14 +99,14 @@ function getRoundResult(p1Choice, p2Choice) { // Game Win Condition. Compare cho
     }
 }
 
-function updateResult(gameResult){
-    if(gameResult == 'p1Won'){
+function updateResult(gameResult) {
+    if (gameResult == 'p1Won') {
         player1Score++;
         console.log(`Player1 won this round!`);
-    } else if(gameResult == 'p2Won'){
+    } else if (gameResult == 'p2Won') {
         console.log(`Player2 won this round!`);
         player2Score++;
-    } else if(gameResult == 'draw') {
+    } else if (gameResult == 'draw') {
         console.log(`This round ended with draw.`);
     }
 }
