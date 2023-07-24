@@ -52,7 +52,7 @@ while (true) {
     let playerInput = getPlayerInput();
     let computerInput = getRandomChoice();
 
-    if (playerInput == 'exit'){
+    if (playerInput == 'exit' || playerInput == null){
         console.log('Thanks for playing the game! See ya!');
         break;
     }
@@ -72,7 +72,7 @@ function getPlayerInput() {
     let pickedRightOne = false; // For readability's sake...
 
     while (!pickedRightOne) {
-        let ans = prompt('Type \'rock\', \'paper\' or \'scissors\'. Type \'exit\' to quit the game.');
+        let ans = prompt('Type \'rock\', \'paper\' or \'scissors\'. Type \'exit\' to quit the game.') || 'exit'; // Eliminates error when prompt window gets closed
         ans = ans.toLowerCase();
     
         if (ans == 'rock' || ans == 'paper' || ans == 'scissors' || ans == 'exit') {
