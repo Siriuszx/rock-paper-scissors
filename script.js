@@ -39,6 +39,16 @@ Pseudocode:
                         return DRAW
                     ELSE
                         return computer WON
+END
+
+Note to Self:
+    Dear future Me, 
+    
+    if you for some odd reason decide to revisit this code, please don't forget that this book exists.
+    "Think Like a Programmer: An Introduction to Creative Problem Solving" by V. Anton Spraul
+    
+    Best of luck! 
+    You got this.
 */
 
 let player1Score = 0;
