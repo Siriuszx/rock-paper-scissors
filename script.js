@@ -72,7 +72,10 @@ function getPlayerInput() {
     let pickedRightOne = false; // For readability's sake...
 
     while (!pickedRightOne) {
-        let ans = prompt('Type \'rock\', \'paper\' or \'scissors\'. Type \'exit\' to quit the game.') || 'exit'; // Eliminates error when prompt window gets closed
+        let ans = prompt(`This game is played in console!
+        
+Type 'rock', 'paper' or 'scissors' 
+Type 'exit' to quit the game`) || 'exit'; // Eliminates error when prompt window gets closed
         ans = ans.toLowerCase();
     
         if (ans == 'rock' || ans == 'paper' || ans == 'scissors' || ans == 'exit') {
