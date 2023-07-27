@@ -112,7 +112,7 @@ function updateResult(gameResult) {
         roundState.textContent = `Player2 won this round!`;
         player2Score++;
     } else if (gameResult == 'draw') {
-        roundState.textContent = `This round ended with draw.`;
+        roundState.textContent = `This round ended in a draw`;
     }
     p1Score.textContent = player1Score;
     p2Score.textContent = player2Score;

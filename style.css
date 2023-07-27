@@ -6,13 +6,15 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 110px;
 }
 
 .info-bar {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 7px;
+    flex-basis: 200px;
 }
 
 .score {
@@ -24,13 +26,16 @@ body {
 }
 
 .action-btns {
-    display: flex;
+    display: flex;  
     justify-content: center;
     align-items: center;
     gap: 20px;
+    flex-wrap: wrap;
+    flex-basis: 200px;
 }
 
 .rps-tool {
+    font-size: 24px;
     width: 180px;
     height: 60px;
     border: 2px solid white;
@@ -38,8 +43,21 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    user-select: none;
+}
+
+.rps-tool:hover{
+    color: black;
+    background-color: white;
+    cursor: pointer;
 }
 
 .round-state {
-    
+    flex-basis: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    font-weight: 900;
+    text-align: center;
 }
