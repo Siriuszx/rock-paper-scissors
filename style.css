@@ -1,0 +1,38 @@
+body {
+    height: 100vh;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 110px;
+}
+
+.info-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.score {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.action-btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.rps-tool {
+    width: 180px;
+    height: 60px;
+    border: 2px solid white;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

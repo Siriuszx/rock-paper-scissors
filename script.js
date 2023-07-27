@@ -54,12 +54,16 @@ Note to Self:
 let player1Score = 0;
 let player2Score = 0;
 
-let game = true; // It's gonna be useful later, I'm certain of it ^^
+let game = false; // It's gonna be useful later, I'm certain of it ^^
 let playerInput = '';
 
+const chooseBtns = document.querySelectorAll('.rps-tool');
+
+chooseBtns.forEach(el => {
+    el.addEventListener('click', playRound);
+})
+
 while (game) {
-    let playerInput = getPlayerInput();
-    let computerInput = getRandomChoice();
 
     if (playerInput == 'exit' || playerInput == null) {
         console.log('Thanks for playing the game! See ya!');
@@ -71,28 +75,16 @@ while (game) {
     console.log(getGameStatus());
 }
 
+function playRound(e){
+    let computerChoice = getRandomChoice();
+    let playerChoice = this.textContent.toLowerCase();
+
+    updateResult(getRoundResult(playerChoice,computerChoice));
+}
+
 function getRandomChoice() { // Generate random option choice. Return result as a string.
     let choices = ['rock', 'paper', 'scissors']; //0 1 2
     return choices[Math.floor(Math.random() * 3)]; // Math.random() * 3 doesn't include the last number...
-}
-
-function getPlayerInput() {
-    let pickedRightOne = false; // For readability's sake...
-
-    while (!pickedRightOne) {
-        let ans = prompt(`This game is played in console!
-
-Type 'rock', 'paper' or 'scissors' 
-Type 'exit' to quit the game`) || 'exit'; // Eliminates error when prompt window gets closed
-        ans = ans.toLowerCase();
-
-        if (ans == 'rock' || ans == 'paper' || ans == 'scissors' || ans == 'exit') {
-            pickedRightOne = true;
-            return ans;
-        } else {
-            console.log('Please enter the valid answer.');
-        }
-    }
 }
 
 function getRoundResult(p1Choice, p2Choice) { // Game Win Condition. Compare choices. Return result as a string.
