@@ -58,6 +58,9 @@ let game = false; // It's gonna be useful later, I'm certain of it ^^
 let playerInput = '';
 
 const chooseBtns = document.querySelectorAll('.rps-tool');
+const p1Score = document.querySelector('.p1score');
+const p2Score = document.querySelector('.p2score');
+const roundState = document.querySelector('.round-state');
 
 chooseBtns.forEach(el => {
     el.addEventListener('click', playRound);
@@ -75,11 +78,11 @@ while (game) {
     console.log(getGameStatus());
 }
 
-function playRound(e){
+function playRound(e) {
     let computerChoice = getRandomChoice();
     let playerChoice = this.textContent.toLowerCase();
 
-    updateResult(getRoundResult(playerChoice,computerChoice));
+    updateResult(getRoundResult(playerChoice, computerChoice));
 }
 
 function getRandomChoice() { // Generate random option choice. Return result as a string.
@@ -104,13 +107,15 @@ function getRoundResult(p1Choice, p2Choice) { // Game Win Condition. Compare cho
 function updateResult(gameResult) {
     if (gameResult == 'p1Won') {
         player1Score++;
-        console.log(`Player1 won this round!`);
+        roundState.textContent = `Player1 won this round!`;
     } else if (gameResult == 'p2Won') {
-        console.log(`Player2 won this round!`);
+        roundState.textContent = `Player2 won this round!`;
         player2Score++;
     } else if (gameResult == 'draw') {
-        console.log(`This round ended with draw.`);
+        roundState.textContent = `This round ended with draw.`;
     }
+    p1Score.textContent = player1Score;
+    p2Score.textContent = player2Score;
 }
 
 function getGameStatus() {
