@@ -54,43 +54,28 @@ Note to Self:
 let player1Score = 0;
 let player2Score = 0;
 
-let game = false; // It's gonna be useful later, I'm certain of it ^^
-let playerInput = '';
-
-const chooseBtns = document.querySelectorAll('.rps-tool');
+const choiceBtns = document.querySelectorAll('.rps-tool');
 const p1Score = document.querySelector('.p1score');
 const p2Score = document.querySelector('.p2score');
 const roundState = document.querySelector('.round-state');
 
-chooseBtns.forEach(el => {
+choiceBtns.forEach(el => {
     el.addEventListener('click', playRound);
 })
-
-while (game) {
-
-    if (playerInput == 'exit' || playerInput == null) {
-        console.log('Thanks for playing the game! See ya!');
-        game = false;
-        break;
-    }
-
-    updateResult(getRoundResult(playerInput, computerInput));
-    console.log(getGameStatus());
-}
 
 function playRound(e) {
     let computerChoice = getRandomChoice();
     let playerChoice = this.textContent.toLowerCase();
 
-    updateResult(getRoundResult(playerChoice, computerChoice));
+    updateStatus(getRoundWinner(playerChoice, computerChoice));
 }
 
-function getRandomChoice() { // Generate random option choice. Return result as a string.
-    let choices = ['rock', 'paper', 'scissors']; //0 1 2
-    return choices[Math.floor(Math.random() * 3)]; // Math.random() * 3 doesn't include the last number...
+function getRandomChoice() {
+    let choices = ['rock', 'paper', 'scissors'];
+    return choices[Math.floor(Math.random() * 3)];
 }
 
-function getRoundResult(p1Choice, p2Choice) { // Game Win Condition. Compare choices. Return result as a string.
+function getRoundWinner(p1Choice, p2Choice) {
     if (p1Choice == 'rock' && p2Choice == 'scissors') {
         return 'p1Won';
     } else if (p1Choice == 'paper' && p2Choice == 'rock') {
@@ -104,7 +89,7 @@ function getRoundResult(p1Choice, p2Choice) { // Game Win Condition. Compare cho
     }
 }
 
-function updateResult(gameResult) {
+function updateStatus(gameResult) {
     if (gameResult == 'p1Won') {
         player1Score++;
         roundState.textContent = `Player1 won this round!`;
@@ -116,10 +101,4 @@ function updateResult(gameResult) {
     }
     p1Score.textContent = player1Score;
     p2Score.textContent = player2Score;
-}
-
-function getGameStatus() {
-    return `Current stats: 
-        Player1 Score: ${player1Score} 
-        Player2 Score: ${player2Score}`
 }
